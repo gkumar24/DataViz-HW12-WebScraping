@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css') }}">
+    <!--Page Title-->
+    <title>Mission to Mars</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron text-center marscolor">
+            <h1>
+                Mission to Mars
+            </h1>
+            <a href="/scrape"> <button type="button" onclick="Scrape_And_Store()" class="btn btn-primary">Scrape New
+                    Data</button>
+            </a>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-8">
+                <h3><strong>Latest Mars News</strong></h3>
+                <h5><strong>{{ marsNews.title }}</strong></h5>
+                <p class="text-justify">{{ marsNews.teaser }}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="text-right">Last updated at: {{ marsNews.time_stamp }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 w-25">
+                <h3><strong>Featured Mars Image</strong></h3>
+                <img src="{{ marsFeaturedImage.img_url }}" class="img-responsive" alt="Featured Mars Image">
+                <p class="text-left">
+                    <strong>{{ marsFeaturedImage.title }}:</strong>
+                    {{ marsFeaturedImage.teaser }}
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h4><strong>Current Weather on Mars</strong></h4>
+                                <p class="text-justify">{{ marsCurrentWeather.weather }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><strong>Mars Facts</strong></h4>
+                        <table class="table table-bordered">
+                            <tbody>
+                                {% for fact in marsFacts %}
+                                <tr>
+                                    <td>{{ fact.title }}</td>
+                                    <td>{{ fact.detail }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3><strong>Mars Hemispheres</strong></h3>
+            </div>
+            {% for hemisphere in marsHemisphereImages %}
+            <div class="col-sm-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="{{ hemisphere.img_url }}" class="img-responsive" alt="Mars Hemisphere Image">
+                    </div>
+                    <div class="panel-footer h5"><strong>{{ hemisphere.title }}</strong></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

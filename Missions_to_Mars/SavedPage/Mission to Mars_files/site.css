@@ -1,0 +1,27 @@
+
+.marscolor {
+    background-color: #e77d11;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    color: #451804
+}
+
+body {
+background-color: #f0e7e7
+}
+
+.panel, .panel-footer {
+    background-color: #f0e7e7
+    }
